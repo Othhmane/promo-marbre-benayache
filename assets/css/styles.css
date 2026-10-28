@@ -850,6 +850,102 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   BANNIÈRE MAJESTUEUSE : USINE DE MARBRE DE LUXE
+   -------------------------------------------------------------------------- */
+.factory-showcase-separator {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 65vh;
+  min-height: 480px;
+  max-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--color-zinc-200);
+  border-bottom: 1px solid var(--color-zinc-200);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
+}
+
+.factory-showcase-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.factory-showcase-separator:hover .factory-showcase-img {
+  transform: scale(1.03);
+}
+
+.factory-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.38) 0%,
+    rgba(15, 23, 42, 0.62) 100%
+  );
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.factory-showcase-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 56rem;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.factory-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.15rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fef08a;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(254, 240, 138, 0.35);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.factory-showcase-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.factory-showcase-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* --------------------------------------------------------------------------
    12. SECTION CONTACT COMPACTE EN 3 PÔLES HARMONIEUX
    -------------------------------------------------------------------------- */
 .contact-section-inner {
@@ -1503,6 +1599,19 @@ button {
 
   .stat-label {
     font-size: 0.7rem;
+  }
+
+  .factory-showcase-separator {
+    height: 48vh;
+    min-height: 340px;
+  }
+
+  .factory-showcase-title {
+    font-size: 1.85rem;
+  }
+
+  .factory-showcase-desc {
+    font-size: 0.95rem;
   }
 
   .floating-whatsapp-btn {
