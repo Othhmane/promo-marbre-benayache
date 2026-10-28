@@ -936,6 +936,11 @@ button {
   }
 }
 
+.application-slide-card {
+  cursor: pointer;
+  position: relative;
+}
+
 .application-slide-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
@@ -946,6 +951,35 @@ button {
   background-color: var(--color-zinc-100);
   overflow: hidden;
   position: relative;
+}
+
+.app-card-zoom-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(15, 23, 42, 0.75);
+  color: var(--color-white);
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  transform: translateY(-4px) scale(0.92);
+  transition: all 0.25s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.application-slide-card:hover .app-card-zoom-badge,
+.application-slide-card:focus-visible .app-card-zoom-badge {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .app-card-img-wrap img {
@@ -1525,6 +1559,139 @@ button {
   background-color: var(--brand-green-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   14. BIS. MODALE LIGHTBOX POUR LES RÉALISATIONS
+   -------------------------------------------------------------------------- */
+.real-modal-dialog {
+  max-width: 52rem;
+  max-height: 92vh;
+}
+
+.real-modal-image-wrapper {
+  height: clamp(18rem, 55vh, 32rem);
+  background-color: var(--color-zinc-950);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.real-modal-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.25s var(--ease-smooth);
+}
+
+.real-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 25;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-smooth);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.real-modal-prev {
+  left: 1rem;
+}
+
+.real-modal-next {
+  right: 1rem;
+}
+
+.real-modal-nav:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.real-modal-footer {
+  padding: 1.25rem 1.5rem;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--color-zinc-100);
+}
+
+.real-modal-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-zinc-400);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.real-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-zinc-900);
+  margin: 0 0 0.25rem;
+}
+
+.real-modal-desc {
+  font-size: 0.875rem;
+  color: var(--color-zinc-600);
+  margin: 0;
+}
+
+.real-modal-cta {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .real-modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .real-modal-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .real-modal-image-wrapper {
+    height: clamp(14rem, 40vh, 22rem);
+  }
+
+  .real-modal-nav {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .real-modal-prev {
+    left: 0.5rem;
+  }
+
+  .real-modal-next {
+    right: 0.5rem;
+  }
 }
 
 /* --------------------------------------------------------------------------

@@ -368,5 +368,116 @@
       });
     }
 
+    /* ==========================================================================
+       7. MODALE LIGHTBOX : OUVERTURE DES PHOTOS DE NOS RÉALISATIONS
+       ========================================================================== */
+    const realCards = Array.from(document.querySelectorAll('.application-slide-card'));
+    const realModal = document.getElementById('realizationModal');
+    const closeRealModalBtn = document.getElementById('closeRealModalBtn');
+    const realModalPrevBtn = document.getElementById('realModalPrevBtn');
+    const realModalNextBtn = document.getElementById('realModalNextBtn');
+    const realModalImg = document.getElementById('realModalImg');
+    const realModalTitle = document.getElementById('realModalTitle');
+    const realModalDesc = document.getElementById('realModalDesc');
+    const realModalWhatsAppBtn = document.getElementById('realModalWhatsAppBtn');
+
+    let currentRealIndex = 0;
+    let previousRealActiveElement = null;
+
+    const updateRealModalContent = (index) => {
+      if (!realCards.length) return;
+      currentRealIndex = (index + realCards.length) % realCards.length;
+      const card = realCards[currentRealIndex];
+
+      const title = card.getAttribute('data-real-title') || '';
+      const desc = card.getAttribute('data-real-desc') || '';
+      const img = card.getAttribute('data-real-img') || '';
+      const alt = card.getAttribute('data-real-alt') || title;
+
+      if (realModalTitle) realModalTitle.textContent = title;
+      if (realModalDesc) realModalDesc.textContent = desc;
+      if (realModalImg) {
+        realModalImg.style.opacity = '0.3';
+        realModalImg.src = img;
+        realModalImg.alt = alt;
+        realModalImg.onload = () => {
+          realModalImg.style.opacity = '1';
+        };
+      }
+
+      if (realModalWhatsAppBtn) {
+        const msg = `Bonjour Promo Marbre Benayache,%0A%0AJe souhaite avoir des informations et un devis pour votre réalisation : *${encodeURIComponent(title)}* (${encodeURIComponent(desc)}).%0A%0APouvez-vous me renseigner ?`;
+        realModalWhatsAppBtn.href = `https://wa.me/213660492010?text=${msg}`;
+      }
+    };
+
+    const openRealModal = (cardIndex) => {
+      previousRealActiveElement = document.activeElement;
+      updateRealModalContent(cardIndex);
+
+      if (realModal) {
+        realModal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        if (closeRealModalBtn) closeRealModalBtn.focus();
+      }
+    };
+
+    const closeRealModal = () => {
+      if (realModal) {
+        realModal.classList.remove('is-active');
+        document.body.style.overflow = '';
+        if (previousRealActiveElement) previousRealActiveElement.focus();
+      }
+    };
+
+    realCards.forEach((card, index) => {
+      card.addEventListener('click', () => openRealModal(index));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openRealModal(index);
+        }
+      });
+    });
+
+    if (closeRealModalBtn) {
+      closeRealModalBtn.addEventListener('click', closeRealModal);
+    }
+
+    if (realModalPrevBtn) {
+      realModalPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateRealModalContent(currentRealIndex - 1);
+      });
+    }
+
+    if (realModalNextBtn) {
+      realModalNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateRealModalContent(currentRealIndex + 1);
+      });
+    }
+
+    if (realModal) {
+      realModal.addEventListener('click', (e) => {
+        if (e.target === realModal) {
+          closeRealModal();
+        }
+      });
+    }
+
+    // Navigation au clavier pour la modale réalisations
+    document.addEventListener('keydown', (e) => {
+      if (realModal && realModal.classList.contains('is-active')) {
+        if (e.key === 'Escape') {
+          closeRealModal();
+        } else if (e.key === 'ArrowLeft') {
+          updateRealModalContent(currentRealIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          updateRealModalContent(currentRealIndex + 1);
+        }
+      }
+    });
+
   });
 })();
