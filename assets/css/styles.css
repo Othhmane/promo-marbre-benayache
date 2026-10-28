@@ -533,6 +533,128 @@ button {
 }
 
 /* --------------------------------------------------------------------------
+   BANNIÈRE VIDÉO CAMION : EXTRACTION & LOGISTIQUE EN CARRIÈRE
+   -------------------------------------------------------------------------- */
+.quarry-truck-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 60vh;
+  min-height: 440px;
+  max-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-zinc-200);
+  background-color: var(--color-zinc-950);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+.quarry-truck-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.quarry-truck-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.45) 0%,
+    rgba(15, 23, 42, 0.65) 100%
+  );
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+
+.quarry-truck-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 54rem;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quarry-truck-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.15rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fef08a;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(254, 240, 138, 0.35);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.quarry-truck-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 4.25rem);
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.quarry-truck-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 40rem;
+  margin: 0 auto;
+  line-height: 1.55;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.video-sound-pill {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(15, 23, 42, 0.75);
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.video-sound-pill:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.video-sound-pill svg {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
    7. SECTIONS & TITRES GLOBAUX
    -------------------------------------------------------------------------- */
 .section-full {
@@ -1612,6 +1734,26 @@ button {
 
   .factory-showcase-desc {
     font-size: 0.95rem;
+  }
+
+  .quarry-truck-banner {
+    height: 44vh;
+    min-height: 310px;
+  }
+
+  .quarry-truck-title {
+    font-size: 1.75rem;
+  }
+
+  .quarry-truck-sub {
+    font-size: 0.875rem;
+  }
+
+  .video-sound-pill {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
   }
 
   .floating-whatsapp-btn {

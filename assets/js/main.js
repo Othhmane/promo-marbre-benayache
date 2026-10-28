@@ -343,5 +343,30 @@
       });
     }
 
+    /* ==========================================================================
+       6. CONTRÔLE DU SON VIDÉO CAMION (EXTRACTION)
+       ========================================================================== */
+    const truckVideo = document.getElementById('truckVideo');
+    const truckVideoSoundBtn = document.getElementById('truckVideoSoundBtn');
+    if (truckVideo && truckVideoSoundBtn) {
+      const iconMuted = truckVideoSoundBtn.querySelector('.sound-icon-muted');
+      const iconUnmuted = truckVideoSoundBtn.querySelector('.sound-icon-unmuted');
+      const soundText = truckVideoSoundBtn.querySelector('.sound-btn-text');
+
+      truckVideoSoundBtn.addEventListener('click', () => {
+        truckVideo.muted = !truckVideo.muted;
+        if (truckVideo.muted) {
+          if (iconMuted) iconMuted.style.display = 'inline-block';
+          if (iconUnmuted) iconUnmuted.style.display = 'none';
+          if (soundText) soundText.textContent = 'Son désactivé';
+        } else {
+          if (iconMuted) iconMuted.style.display = 'none';
+          if (iconUnmuted) iconUnmuted.style.display = 'inline-block';
+          if (soundText) soundText.textContent = 'Son activé';
+          truckVideo.play().catch(() => {});
+        }
+      });
+    }
+
   });
 })();
