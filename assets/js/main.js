@@ -479,5 +479,86 @@
       }
     });
 
+    /* ==========================================================================
+       6. DIAPORAMA AUTOMATIQUE : USINE & SCIAGE DE BLOCS
+       ========================================================================== */
+    const factorySlides = Array.from(document.querySelectorAll('#usine .factory-slide'));
+    const factoryDots = Array.from(document.querySelectorAll('#usine .factory-dot'));
+    const usineSection = document.getElementById('usine');
+
+    if (factorySlides.length > 1 && usineSection) {
+      let currentFactorySlide = 0;
+      let factoryInterval = null;
+      let isUsineVisible = false;
+      const SLIDE_INTERVAL_MS = 4500;
+
+      const setFactorySlide = (targetIndex) => {
+        if (targetIndex === currentFactorySlide) return;
+        factorySlides[currentFactorySlide].classList.remove('is-active');
+        if (factoryDots[currentFactorySlide]) {
+          factoryDots[currentFactorySlide].classList.remove('is-active');
+        }
+
+        currentFactorySlide = (targetIndex + factorySlides.length) % factorySlides.length;
+
+        factorySlides[currentFactorySlide].classList.add('is-active');
+        if (factoryDots[currentFactorySlide]) {
+          factoryDots[currentFactorySlide].classList.add('is-active');
+        }
+      };
+
+      const showNextFactorySlide = () => {
+        setFactorySlide(currentFactorySlide + 1);
+      };
+
+      const startFactorySlideshow = () => {
+        if (!factoryInterval && isUsineVisible) {
+          factoryInterval = setInterval(showNextFactorySlide, SLIDE_INTERVAL_MS);
+        }
+      };
+
+      const stopFactorySlideshow = () => {
+        if (factoryInterval) {
+          clearInterval(factoryInterval);
+          factoryInterval = null;
+        }
+      };
+
+      // Clic interactif sur les indicateurs
+      factoryDots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setFactorySlide(index);
+          stopFactorySlideshow();
+          startFactorySlideshow();
+        });
+      });
+
+      // Pause et reprise au survol
+      usineSection.addEventListener('mouseenter', stopFactorySlideshow);
+      usineSection.addEventListener('mouseleave', () => {
+        if (isUsineVisible) startFactorySlideshow();
+      });
+
+      // Détection de visibilité dans le viewport pour préserver les ressources
+      if ('IntersectionObserver' in window) {
+        const usineObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            isUsineVisible = entry.isIntersecting;
+            if (isUsineVisible) {
+              startFactorySlideshow();
+            } else {
+              stopFactorySlideshow();
+            }
+          });
+        }, { threshold: 0.15 });
+
+        usineObserver.observe(usineSection);
+      } else {
+        isUsineVisible = true;
+        startFactorySlideshow();
+      }
+    }
+
   });
 })();

@@ -1029,6 +1029,36 @@ button {
   contain-intrinsic-size: 1px 600px;
 }
 
+.factory-slideshow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.factory-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.factory-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.factory-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .factory-showcase-img {
   position: absolute;
   inset: 0;
@@ -1039,8 +1069,44 @@ button {
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.factory-showcase-img-quarry {
+  object-position: center 48%;
+}
+
 .factory-showcase-separator:hover .factory-showcase-img {
   transform: scale(1.03);
+}
+
+.factory-slideshow-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 12;
+}
+
+.factory-dot {
+  width: 24px;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.factory-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.factory-dot.is-active {
+  width: 42px;
+  background: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
 .factory-showcase-overlay {
@@ -1902,6 +1968,20 @@ button {
   .factory-showcase-separator {
     height: 48vh;
     min-height: 340px;
+  }
+
+  .factory-slideshow-dots {
+    bottom: 1rem;
+    gap: 0.4rem;
+  }
+
+  .factory-dot {
+    width: 18px;
+    height: 3.5px;
+  }
+
+  .factory-dot.is-active {
+    width: 32px;
   }
 
   .quarry-truck-banner {
