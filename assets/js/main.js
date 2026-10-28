@@ -490,7 +490,7 @@
       let currentFactorySlide = 0;
       let factoryInterval = null;
       let isUsineVisible = false;
-      const SLIDE_INTERVAL_MS = 4500;
+      const SLIDE_INTERVAL_MS = 1800;
 
       const setFactorySlide = (targetIndex) => {
         if (targetIndex === currentFactorySlide) return;
@@ -532,12 +532,6 @@
           stopFactorySlideshow();
           startFactorySlideshow();
         });
-      });
-
-      // Pause et reprise au survol
-      usineSection.addEventListener('mouseenter', stopFactorySlideshow);
-      usineSection.addEventListener('mouseleave', () => {
-        if (isUsineVisible) startFactorySlideshow();
       });
 
       // Détection de visibilité dans le viewport pour préserver les ressources
