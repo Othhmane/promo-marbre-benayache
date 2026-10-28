@@ -423,14 +423,16 @@ button {
 }
 
 .hero-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.85rem, 5.5vw, 4.25rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--color-zinc-900);
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0, 0, 0, 0.15);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 auto;
+  max-width: 48rem;
+  letter-spacing: normal;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  text-align: center;
 }
 
 .btn-hero-primary {
@@ -601,14 +603,16 @@ button {
 }
 
 .quarry-truck-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5.5vw, 4.25rem);
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  margin: 0 0 0.85rem;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 auto;
+  max-width: 48rem;
+  letter-spacing: normal;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  text-align: center;
 }
 
 .quarry-truck-sub {
@@ -863,14 +867,17 @@ button {
 .artistic-separator-title {
   position: relative;
   z-index: 10;
-  font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 6.5vw, 5.5rem);
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: normal;
   text-align: center;
   padding: 0 1.5rem;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+  margin: 0 auto;
+  max-width: 48rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
 }
 
 /* --------------------------------------------------------------------------
@@ -1056,11 +1063,14 @@ button {
 .factory-showcase-desc {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 2.2vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.92);
-  max-width: 42rem;
-  margin: 0 auto;
+  font-weight: 500;
   line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 48rem;
+  margin: 0 auto;
+  letter-spacing: normal;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  text-align: center;
 }
 
 /* --------------------------------------------------------------------------
@@ -1692,8 +1702,11 @@ button {
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.75rem;
+  .hero-title,
+  .quarry-truck-title,
+  .artistic-separator-title,
+  .factory-showcase-desc {
+    font-size: 0.95rem;
   }
 
   .btn-hero-primary {
@@ -1724,25 +1737,9 @@ button {
     min-height: 340px;
   }
 
-  .factory-showcase-title {
-    font-size: 1.85rem;
-  }
-
-  .factory-showcase-desc {
-    font-size: 0.95rem;
-  }
-
   .quarry-truck-banner {
     height: 44vh;
     min-height: 310px;
-  }
-
-  .quarry-truck-title {
-    font-size: 1.75rem;
-  }
-
-  .quarry-truck-sub {
-    font-size: 0.875rem;
   }
 
   .video-sound-pill {
