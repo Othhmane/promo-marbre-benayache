@@ -484,79 +484,77 @@
     });
 
     /* ==========================================================================
-       6. DIAPORAMA AUTOMATIQUE : USINE & SCIAGE DE BLOCS
+       6. DIAPORAMAS AUTOMATIQUES : L'ART DE LA PIERRE & SCIAGE DE BLOCS
        ========================================================================== */
-    const factorySlides = Array.from(document.querySelectorAll('#usine .factory-slide'));
-    const factoryDots = Array.from(document.querySelectorAll('#usine .factory-dot'));
-    const usineSection = document.getElementById('usine');
+    const initBannerSlideshow = (containerSelector, slideSelector, dotSelector, intervalMs = 1800) => {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      const slides = Array.from(container.querySelectorAll(slideSelector));
+      const dots = Array.from(container.querySelectorAll(dotSelector));
+      if (slides.length <= 1) return;
 
-    if (factorySlides.length > 1 && usineSection) {
-      let currentFactorySlide = 0;
-      let factoryInterval = null;
-      let isUsineVisible = false;
-      const SLIDE_INTERVAL_MS = 1800;
+      let currentSlide = 0;
+      let interval = null;
+      let isVisible = false;
 
-      const setFactorySlide = (targetIndex) => {
-        if (targetIndex === currentFactorySlide) return;
-        factorySlides[currentFactorySlide].classList.remove('is-active');
-        if (factoryDots[currentFactorySlide]) {
-          factoryDots[currentFactorySlide].classList.remove('is-active');
-        }
+      const setSlide = (targetIndex) => {
+        if (targetIndex === currentSlide) return;
+        slides[currentSlide].classList.remove('is-active');
+        if (dots[currentSlide]) dots[currentSlide].classList.remove('is-active');
 
-        currentFactorySlide = (targetIndex + factorySlides.length) % factorySlides.length;
+        currentSlide = (targetIndex + slides.length) % slides.length;
 
-        factorySlides[currentFactorySlide].classList.add('is-active');
-        if (factoryDots[currentFactorySlide]) {
-          factoryDots[currentFactorySlide].classList.add('is-active');
-        }
+        slides[currentSlide].classList.add('is-active');
+        if (dots[currentSlide]) dots[currentSlide].classList.add('is-active');
       };
 
-      const showNextFactorySlide = () => {
-        setFactorySlide(currentFactorySlide + 1);
-      };
+      const showNext = () => setSlide(currentSlide + 1);
 
-      const startFactorySlideshow = () => {
-        if (!factoryInterval && isUsineVisible) {
-          factoryInterval = setInterval(showNextFactorySlide, SLIDE_INTERVAL_MS);
+      const start = () => {
+        if (!interval && isVisible) {
+          interval = setInterval(showNext, intervalMs);
         }
       };
 
-      const stopFactorySlideshow = () => {
-        if (factoryInterval) {
-          clearInterval(factoryInterval);
-          factoryInterval = null;
+      const stop = () => {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
         }
       };
 
       // Clic interactif sur les indicateurs
-      factoryDots.forEach((dot, index) => {
+      dots.forEach((dot, index) => {
         dot.addEventListener('click', (e) => {
           e.stopPropagation();
-          setFactorySlide(index);
-          stopFactorySlideshow();
-          startFactorySlideshow();
+          setSlide(index);
+          stop();
+          start();
         });
       });
 
-      // Détection de visibilité dans le viewport pour préserver les ressources
+      // Pause quand la section quitte l'écran
       if ('IntersectionObserver' in window) {
-        const usineObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            isUsineVisible = entry.isIntersecting;
-            if (isUsineVisible) {
-              startFactorySlideshow();
-            } else {
-              stopFactorySlideshow();
-            }
+            isVisible = entry.isIntersecting;
+            if (isVisible) start();
+            else stop();
           });
         }, { threshold: 0.15 });
 
-        usineObserver.observe(usineSection);
+        observer.observe(container);
       } else {
-        isUsineVisible = true;
-        startFactorySlideshow();
+        isVisible = true;
+        start();
       }
-    }
+    };
+
+    // 1. Diaporama Artistique : L’Art de la Pierre (Échantillons gravés & Luxury Showroom) - 1.8s
+    initBannerSlideshow('#artDeLaPierre', '.artistic-slide', '.artistic-dot', 1800);
+
+    // 2. Diaporama Usine : Sciage industriel de blocs (Usine & Manutention blocs Groupe Benayache) - 1.8s
+    initBannerSlideshow('#usine', '.factory-slide', '.factory-dot', 1800);
 
   });
 })();

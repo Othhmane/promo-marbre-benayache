@@ -390,18 +390,34 @@
     <!-- ========================================================== -->
     <!-- 3. SÉPARATEUR MAJESTUEUX : L'ART DE LA PIERRE              -->
     <!-- ========================================================== -->
-    <section class="artistic-separator" aria-label="Bannière artistique Promo Marbre">
-      <picture>
-        <source srcset="assets/images/marble-samples-artistic.webp" type="image/webp">
-        <img src="assets/images/marble-samples-artistic.jpg"
-          alt="Échantillons et tranches de marbre d'exception - Promo Marbre Benayache" class="artistic-separator-img"
-          width="1024" height="640" loading="lazy" decoding="async">
-      </picture>
+    <section id="artDeLaPierre" class="artistic-separator" aria-label="Bannière artistique L’Art de la Pierre Promo Marbre Benayache">
+      <div class="artistic-slideshow" aria-hidden="true">
+        <div class="artistic-slide is-active">
+          <picture>
+            <source srcset="assets/images/art-echantillons-graves.webp" type="image/webp">
+            <img src="assets/images/art-echantillons-graves.jpg"
+              alt="Échantillons de pierre d'exception gravés Groupe Benayache" class="artistic-separator-img"
+              width="1586" height="992" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="artistic-slide">
+          <picture>
+            <source srcset="assets/images/art-luxury-showroom.webp" type="image/webp">
+            <img src="assets/images/art-luxury-showroom.jpg"
+              alt="Luxury Marble Showroom façonnage et sciage de blocs Groupe Benayache" class="artistic-separator-img"
+              width="1680" height="944" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
       <div class="artistic-separator-overlay"></div>
       <p class="artistic-separator-title">
         L’Art de la Pierre
       </p>
-
+      <!-- Indicateurs de défilement discrets -->
+      <div class="artistic-slideshow-dots" aria-label="Navigation du diaporama artistique">
+        <button type="button" class="artistic-dot is-active" data-art-index="0" aria-label="Photo 1 : Échantillons gravés Groupe Benayache"></button>
+        <button type="button" class="artistic-dot" data-art-index="1" aria-label="Photo 2 : Luxury Marble Showroom"></button>
+      </div>
     </section>
 
     <!-- ========================================================== -->
