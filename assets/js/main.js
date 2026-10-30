@@ -21,6 +21,7 @@
       const toggleMenu = (open) => {
         const isOpen = open !== undefined ? open : !mobileMenu.classList.contains('is-open');
         mobileMenu.classList.toggle('is-open', isOpen);
+        if (navbar) navbar.classList.toggle('menu-open', isOpen);
         mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
       };
 
@@ -59,6 +60,9 @@
           isScrolling = true;
         }
       }, { passive: true });
+
+      // Initialisation immédiate au chargement de la page
+      handleNavbarScroll();
     }
 
     /* ==========================================================================
